@@ -19,3 +19,148 @@
       </ul>
     </nav>
   </header>
+
+  <main>
+
+    <section id="datos">
+      <h2>Dónde y cuándo encontrarnos</h2>
+
+      <address>
+        <strong>Casa Brillante</strong><br>
+        Calle Max Henríquez Ureña #12, Piantini<br>
+        Santo Domingo, República Dominicana<br>
+        Teléfono: <a href="tel:+18095550187">809-555-0187</a><br>
+        Correo: <a href="mailto:hola@casabrillante.com">hola@casabrillante.com</a>
+      </address>
+
+      <p>
+        Horario de atención: lunes a sábado, de <time datetime="07:00">7:00 a. m.</time>
+        a <time datetime="17:00">5:00 p. m.</time>
+      </p>
+
+      <ul>
+        <li><a href="#formulario">Ir directo al formulario de reserva</a></li>
+        <li><a href="docs/condiciones-del-servicio.txt" download>Descargar las condiciones del servicio (TXT)</a></li>
+        <li>
+          Si tu edificio tiene reglas para visitas, revisa también el
+          <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener">mapa de OpenStreetMap</a>
+          para ubicar bien la dirección.
+        </li>
+      </ul>
+    </section>
+
+    <section id="formulario">
+      <h2>Reserva tu limpieza</h2>
+
+      <form action="#" method="post">
+
+        <fieldset>
+          <legend>Tus datos</legend>
+
+          <p>
+            <label for="nombre">Nombre completo</label><br>
+            <input type="text" id="nombre" name="nombre" required minlength="5" maxlength="60">
+          </p>
+
+          <p>
+            <label for="correo">Correo electrónico</label><br>
+            <input type="email" id="correo" name="correo" required>
+          </p>
+
+          <p>
+            <label for="telefono">Teléfono (formato 809-000-0000)</label><br>
+            <input type="tel" id="telefono" name="telefono" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="809-555-0187">
+          </p>
+
+          <p>
+            <label for="pin">PIN de 4 números para consultar tu reserva</label><br>
+            <input type="password" id="pin" name="pin" required minlength="4" maxlength="4" pattern="[0-9]{4}" autocomplete="off">
+          </p>
+
+          <p>
+            <label for="foto">Foto del área a limpiar (opcional)</label><br>
+            <input type="file" id="foto" name="foto" accept="image/*">
+          </p>
+        </fieldset>
+
+        <fieldset>
+          <legend>Tu servicio</legend>
+
+          <p>
+            <label for="servicio">Tipo de servicio</label><br>
+            <select id="servicio" name="servicio" required>
+              <option value="">Escoge uno</option>
+              <optgroup label="Limpieza del hogar">
+                <option value="regular">Limpieza regular</option>
+                <option value="profunda">Limpieza profunda</option>
+              </optgroup>
+              <optgroup label="Extras">
+                <option value="ventanas">Ventanas y balcón</option>
+                <option value="colchon">Lavado de colchón</option>
+              </optgroup>
+            </select>
+          </p>
+
+          <p>
+            <label for="fecha">Fecha del servicio</label><br>
+            <input type="date" id="fecha" name="fecha" required min="2026-11-02">
+          </p>
+
+          <p>
+            <label for="hora">Hora de llegada (entre 7:00 a. m. y 4:00 p. m.)</label><br>
+            <input type="time" id="hora" name="hora" required min="07:00" max="16:00">
+          </p>
+
+          <p>
+            <label for="habitaciones">Número de habitaciones</label><br>
+            <input type="number" id="habitaciones" name="habitaciones" required min="1" max="5" value="1">
+          </p>
+
+          <p>
+            <label for="suciedad">Qué tan sucio está (1 = poco, 5 = mucho)</label><br>
+            <input type="range" id="suciedad" name="suciedad" min="1" max="5" value="3">
+          </p>
+
+          <p>
+            <label for="color">Color de tu sofá o tapizado (nos ayuda a escoger el producto)</label><br>
+            <input type="color" id="color" name="color" value="#cccccc">
+          </p>
+
+          <p>Forma de pago:</p>
+          <p>
+            <input type="radio" id="pago-efectivo" name="pago" value="efectivo" checked>
+            <label for="pago-efectivo">Efectivo</label>
+            <input type="radio" id="pago-tarjeta" name="pago" value="tarjeta">
+            <label for="pago-tarjeta">Tarjeta</label>
+            <input type="radio" id="pago-transferencia" name="pago" value="transferencia">
+            <label for="pago-transferencia">Transferencia</label>
+          </p>
+
+          <p>
+            <label for="indicaciones">Indicaciones especiales (mascotas, escaleras, portería...)</label><br>
+            <textarea id="indicaciones" name="indicaciones" rows="4" cols="40" maxlength="300"></textarea>
+          </p>
+
+          <p>
+            <input type="checkbox" id="acepto" name="acepto" required>
+            <label for="acepto">Acepto las condiciones del servicio</label>
+          </p>
+        </fieldset>
+
+        <p><button type="submit">Enviar reserva</button></p>
+      </form>
+    </section>
+
+    <aside>
+      <h2>Importante</h2>
+      <p>Reserva con al menos 24 horas de anticipación. Si es urgente, mejor llámanos al <a href="tel:+18095550187">809-555-0187</a>.</p>
+    </aside>
+
+  </main>
+
+  <footer>
+    <p><small>© 2026 Casa Brillante. Sitio hecho por Angel David Mature Caraballo, matrícula 2024-2048.</small></p>
+  </footer>
+
+</body>
+</html>
