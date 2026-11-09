@@ -1,4 +1,3 @@
-// 1. Año automático en el footer
 const anio = document.getElementById("anio");
 function escribirAnio() {
   if (anio) {
@@ -7,7 +6,6 @@ function escribirAnio() {
 }
 escribirAnio();
 
-// 2. Menú hamburguesa (Móvil)
 const botonMenu = document.getElementById("btnMenu");
 const menu = document.getElementById("menu");
 
@@ -24,7 +22,6 @@ if (botonMenu && menu) {
   botonMenu.addEventListener("click", alternarMenu);
 }
 
-// 3. Modo oscuro (Guardado en LocalStorage)
 const botonOscuro = document.getElementById("btnOscuro");
 
 function alternarTema() {
@@ -42,13 +39,12 @@ function aplicarTemaGuardado() {
   }
 }
 
-aplicarTemaGuardado(); // Se ejecuta al cargar cualquier página
+aplicarTemaGuardado();
 
 if (botonOscuro) {
   botonOscuro.addEventListener("click", alternarTema);
 }
 
-// 4. Botón Volver Arriba
 const botonArriba = document.createElement("button");
 botonArriba.type = "button";
 botonArriba.textContent = "↑ Arriba";
@@ -70,15 +66,56 @@ function volverArriba() {
 window.addEventListener("scroll", mostrarBotonArriba);
 botonArriba.addEventListener("click", volverArriba);
 
-// 5. Catálogo dinámico de servicios (Página Servicios)
 const servicios = [
-  { nombre: "Regular, 1 habitación", categoria: "Regular", precio: 1800, descripcion: "Polvo, pisos, baños y cocina para un apartamento pequeño.", imagen: "https://placehold.co/300x180?text=Regular+1" },
-  { nombre: "Regular, 2 habitaciones", categoria: "Regular", precio: 2500, descripcion: "Mantenimiento completo para apartamentos de dos habitaciones.", imagen: "https://placehold.co/300x180?text=Regular+2" },
-  { nombre: "Regular, 3 habitaciones", categoria: "Regular", precio: 3300, descripcion: "Limpieza al día para apartamentos de tres habitaciones.", imagen: "https://placehold.co/300x180?text=Regular+3" },
-  { nombre: "Profunda, 1 o 2 habitaciones", categoria: "Profunda", precio: 3800, descripcion: "Rincones, azulejos, juntas y gabinetes por dentro.", imagen: "https://placehold.co/300x180?text=Profunda+1-2" },
-  { nombre: "Profunda, 3 habitaciones", categoria: "Profunda", precio: 5200, descripcion: "Limpieza detallada de todo el apartamento, incluso zonas.", imagen: "https://placehold.co/300x180?text=Profunda+3" },
-  { nombre: "Ventanas y balcón", categoria: "Extras", precio: 900, descripcion: "Cristales sin marcas ni manchas, también por fuera del balcón.", imagen: "https://placehold.co/300x180?text=Ventanas" },
-  { nombre: "Lavado de colchón", categoria: "Extras", precio: 1200, descripcion: "Lavado y desinfección de colchón para dormir mejor.", imagen: "https://placehold.co/300x180?text=Colchon" }
+  { 
+    nombre: "Regular, 1 habitación", 
+    categoria: "Regular", 
+    precio: 1800, 
+    descripcion: "Polvo, pisos, baños y cocina para un apartamento pequeño.", 
+    imagen: "img/regular1.jpg" /* <-- AQUÍ PONES LA RUTA DE TU FOTO */
+  },
+  { 
+    nombre: "Regular, 2 habitaciones", 
+    categoria: "Regular", 
+    precio: 2500, 
+    descripcion: "Mantenimiento completo para apartamentos de dos habitaciones.", 
+    imagen: "img/regular2.jpg" 
+  },
+  { 
+    nombre: "Regular, 3 habitaciones", 
+    categoria: "Regular", 
+    precio: 3300, 
+    descripcion: "Limpieza al día para apartamentos de tres habitaciones.", 
+    imagen: "img/regular3.jpg" 
+  },
+  { 
+    nombre: "Profunda, 1 o 2 habitaciones", 
+    categoria: "Profunda", 
+    precio: 3800, 
+    descripcion: "Rincones, azulejos, juntas y gabinetes por dentro.", 
+    imagen: "img/profunda1.png" 
+  },
+  { 
+    nombre: "Profunda, 3 habitaciones", 
+    categoria: "Profunda", 
+    precio: 5200, 
+    descripcion: "Limpieza detallada de todo el apartamento, incluso zonas.", 
+    imagen: "img/profunda2.jpg" 
+  },
+  { 
+    nombre: "Ventanas y balcón", 
+    categoria: "Extras", 
+    precio: 900, 
+    descripcion: "Cristales sin marcas ni manchas, también por fuera del balcón.", 
+    imagen: "img/ventanas.jpg" 
+  },
+  { 
+    nombre: "Lavado de colchón", 
+    categoria: "Extras", 
+    precio: 1200, 
+    descripcion: "Lavado y desinfección de colchón para dormir mejor.", 
+    imagen: "img/colchon.jpg" 
+  }
 ];
 
 const catalogo = document.getElementById("catalogo");
@@ -142,7 +179,6 @@ if (catalogo && buscador && filtro && contador) {
   filtro.addEventListener("change", filtrarServicios);
 }
 
-// 6. Validación del Formulario (Página Contacto)
 const formulario = document.getElementById("formReserva");
 const resultado = document.getElementById("resultado");
 
@@ -251,7 +287,6 @@ if (formulario && resultado) {
   formulario.addEventListener("change", alCorregir);
 }
 
-// 7. Estadísticas animadas (Página Inicio)
 const numeros = document.querySelectorAll(".numero");
 
 function contarNumero(elemento) {
