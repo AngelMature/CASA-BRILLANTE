@@ -1,12 +1,15 @@
 :root {
-  --color-fondo: #f4faf6;
+  --color-fondo: #e6f2ea;
   --color-texto: #2b2b2b;
   --color-principal: #2e7d5b;
-  --color-encabezado: #2e7d5b;
+  --color-encabezado: #1f5c42;
   --color-sobre-encabezado: #ffffff;
   --color-tarjeta: #ffffff;
   --color-borde: #cfe5d8;
   --color-error: #c0392b;
+  --color-acento: #f4b942;
+  --color-sobre-acento: #2b2b2b;
+  --color-suave: #fff4d6;
   --fuente: "Poppins", Arial, sans-serif;
   --espacio: 16px;
   --radio: 8px;
@@ -21,6 +24,8 @@ body.oscuro {
   --color-tarjeta: #2a2e2c;
   --color-borde: #4a5a52;
   --color-error: #ff8a7a;
+  --color-acento: #d99a1e;
+  --color-suave: #3b3524;
 }
 
 * {
@@ -88,7 +93,8 @@ header {
   align-items: center;
   gap: var(--espacio);
   padding: var(--espacio) 24px;
-  background: var(--color-encabezado);
+  background: linear-gradient(135deg, var(--color-encabezado), var(--color-principal));
+  box-shadow: var(--sombra);
   color: var(--color-sobre-encabezado);
 }
 
@@ -142,7 +148,7 @@ main > article {
 
 aside {
   grid-column: 2;
-  grid-row: 1;
+  grid-row: 2;
 }
 
 section,
@@ -150,8 +156,10 @@ article,
 aside {
   padding: 20px;
   border: 1px solid var(--color-borde);
+  border-top: 4px solid var(--color-principal);
   border-radius: var(--radio);
   background: var(--color-tarjeta);
+  box-shadow: var(--sombra);
   overflow-x: auto;
 }
 
@@ -262,8 +270,8 @@ button {
   padding: 8px 16px;
   border: 2px solid var(--color-principal);
   border-radius: var(--radio);
-  background: var(--color-tarjeta);
-  color: var(--color-texto);
+  background: var(--color-principal);
+  color: var(--color-sobre-encabezado);
   font-family: var(--fuente);
   font-size: 1rem;
   cursor: pointer;
@@ -271,7 +279,7 @@ button {
 }
 
 button:hover {
-  background: var(--color-fondo);
+  background: var(--color-encabezado);
   transform: scale(1.05);
 }
 
@@ -284,6 +292,98 @@ button:hover {
 
 .volver-arriba.visible {
   display: block;
+}
+
+header button {
+  background: transparent;
+  border-color: var(--color-sobre-encabezado);
+}
+
+header button:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+main > section.hero {
+  grid-column: 1 / -1;
+  padding: 48px 20px;
+  border-top: none;
+  background: linear-gradient(135deg, var(--color-principal), var(--color-encabezado));
+  color: var(--color-sobre-encabezado);
+  text-align: center;
+}
+
+.hero h2 {
+  margin-top: 0;
+  font-size: 2rem;
+  color: var(--color-sobre-encabezado);
+}
+
+.boton {
+  display: inline-block;
+  margin: 4px;
+  padding: 10px 20px;
+  border: 2px solid var(--color-acento);
+  border-radius: var(--radio);
+  background: var(--color-acento);
+  color: var(--color-sobre-acento);
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform 0.3s;
+}
+
+.boton:hover {
+  transform: scale(1.05);
+}
+
+.boton.secundario {
+  background: transparent;
+  border-color: var(--color-sobre-encabezado);
+  color: var(--color-sobre-encabezado);
+}
+
+.beneficios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--espacio);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.beneficios li {
+  padding: var(--espacio);
+  border-left: 4px solid var(--color-acento);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+}
+
+.beneficios h3 {
+  margin-top: 0;
+}
+
+.beneficios p {
+  margin-bottom: 0;
+}
+
+.oferta,
+aside {
+  background: var(--color-suave);
+}
+
+.oferta {
+  padding: 12px var(--espacio);
+  border-left: 4px solid var(--color-acento);
+  border-radius: var(--radio);
+}
+
+aside {
+  border-top-color: var(--color-acento);
+}
+
+mark {
+  padding: 0 4px;
+  background: var(--color-acento);
+  color: var(--color-sobre-acento);
 }
 
 footer {
