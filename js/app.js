@@ -1,14 +1,13 @@
+// 1. Año automático en el footer
 const anio = document.getElementById("anio");
-
 function escribirAnio() {
-  anio.textContent = new Date().getFullYear();
+  if (anio) {
+    anio.textContent = new Date().getFullYear();
+  }
 }
+escribirAnio();
 
-if (anio) {
-  escribirAnio();
-}
-
-
+// 2. Menú hamburguesa (Móvil)
 const botonMenu = document.getElementById("btnMenu");
 const menu = document.getElementById("menu");
 
@@ -25,7 +24,7 @@ if (botonMenu && menu) {
   botonMenu.addEventListener("click", alternarMenu);
 }
 
-
+// 3. Modo oscuro (Guardado en LocalStorage)
 const botonOscuro = document.getElementById("btnOscuro");
 
 function alternarTema() {
@@ -43,13 +42,13 @@ function aplicarTemaGuardado() {
   }
 }
 
-aplicarTemaGuardado();
+aplicarTemaGuardado(); // Se ejecuta al cargar cualquier página
 
 if (botonOscuro) {
   botonOscuro.addEventListener("click", alternarTema);
 }
 
-
+// 4. Botón Volver Arriba
 const botonArriba = document.createElement("button");
 botonArriba.type = "button";
 botonArriba.textContent = "↑ Arriba";
@@ -71,29 +70,15 @@ function volverArriba() {
 window.addEventListener("scroll", mostrarBotonArriba);
 botonArriba.addEventListener("click", volverArriba);
 
-
+// 5. Catálogo dinámico de servicios (Página Servicios)
 const servicios = [
-  { nombre: "Regular, 1 habitación", categoria: "Regular", precio: 1800,
-    descripcion: "Polvo, pisos, baños y cocina para un apartamento pequeño.",
-    imagen: "https://placehold.co/300x180?text=Regular+1" },
-  { nombre: "Regular, 2 habitaciones", categoria: "Regular", precio: 2500,
-    descripcion: "Mantenimiento completo para apartamentos de dos habitaciones.",
-    imagen: "https://placehold.co/300x180?text=Regular+2" },
-  { nombre: "Regular, 3 habitaciones", categoria: "Regular", precio: 3300,
-    descripcion: "Limpieza al día para apartamentos de tres habitaciones.",
-    imagen: "https://placehold.co/300x180?text=Regular+3" },
-  { nombre: "Profunda, 1 o 2 habitaciones", categoria: "Profunda", precio: 3800,
-    descripcion: "Rincones, azulejos, juntas y gabinetes por dentro.",
-    imagen: "https://placehold.co/300x180?text=Profunda+1-2" },
-  { nombre: "Profunda, 3 habitaciones", categoria: "Profunda", precio: 5200,
-    descripcion: "Limpieza detallada de todo el apartamento, incluso zonas que casi nunca se tocan.",
-    imagen: "https://placehold.co/300x180?text=Profunda+3" },
-  { nombre: "Ventanas y balcón", categoria: "Extras", precio: 900,
-    descripcion: "Cristales sin marcas ni manchas, también por fuera del balcón.",
-    imagen: "https://placehold.co/300x180?text=Ventanas" },
-  { nombre: "Lavado de colchón", categoria: "Extras", precio: 1200,
-    descripcion: "Lavado y desinfección de colchón para dormir mejor.",
-    imagen: "https://placehold.co/300x180?text=Colchon" }
+  { nombre: "Regular, 1 habitación", categoria: "Regular", precio: 1800, descripcion: "Polvo, pisos, baños y cocina para un apartamento pequeño.", imagen: "https://placehold.co/300x180?text=Regular+1" },
+  { nombre: "Regular, 2 habitaciones", categoria: "Regular", precio: 2500, descripcion: "Mantenimiento completo para apartamentos de dos habitaciones.", imagen: "https://placehold.co/300x180?text=Regular+2" },
+  { nombre: "Regular, 3 habitaciones", categoria: "Regular", precio: 3300, descripcion: "Limpieza al día para apartamentos de tres habitaciones.", imagen: "https://placehold.co/300x180?text=Regular+3" },
+  { nombre: "Profunda, 1 o 2 habitaciones", categoria: "Profunda", precio: 3800, descripcion: "Rincones, azulejos, juntas y gabinetes por dentro.", imagen: "https://placehold.co/300x180?text=Profunda+1-2" },
+  { nombre: "Profunda, 3 habitaciones", categoria: "Profunda", precio: 5200, descripcion: "Limpieza detallada de todo el apartamento, incluso zonas.", imagen: "https://placehold.co/300x180?text=Profunda+3" },
+  { nombre: "Ventanas y balcón", categoria: "Extras", precio: 900, descripcion: "Cristales sin marcas ni manchas, también por fuera del balcón.", imagen: "https://placehold.co/300x180?text=Ventanas" },
+  { nombre: "Lavado de colchón", categoria: "Extras", precio: 1200, descripcion: "Lavado y desinfección de colchón para dormir mejor.", imagen: "https://placehold.co/300x180?text=Colchon" }
 ];
 
 const catalogo = document.getElementById("catalogo");
@@ -102,7 +87,7 @@ const filtro = document.getElementById("filtro");
 const contador = document.getElementById("contador");
 
 function pintarTarjetas(lista) {
-  catalogo.textContent = "";
+  catalogo.innerHTML = "";
   contador.textContent = "Mostrando " + lista.length + " de " + servicios.length + " servicios";
 
   if (lista.length === 0) {
@@ -143,8 +128,7 @@ function filtrarServicios() {
   const categoriaElegida = filtro.value;
 
   const resultado = servicios.filter(function (servicio) {
-    const coincideTexto = servicio.nombre.toLowerCase().includes(texto) ||
-      servicio.descripcion.toLowerCase().includes(texto);
+    const coincideTexto = servicio.nombre.toLowerCase().includes(texto) || servicio.descripcion.toLowerCase().includes(texto);
     const coincideCategoria = categoriaElegida === "todas" || servicio.categoria === categoriaElegida;
     return coincideTexto && coincideCategoria;
   });
@@ -158,170 +142,99 @@ if (catalogo && buscador && filtro && contador) {
   filtro.addEventListener("change", filtrarServicios);
 }
 
-
+// 6. Validación del Formulario (Página Contacto)
 const formulario = document.getElementById("formReserva");
 const resultado = document.getElementById("resultado");
 
 function ponerError(id, mensaje) {
   document.getElementById("error-" + id).textContent = mensaje;
   const campo = document.getElementById(id);
-  if (campo) {
-    campo.classList.add("invalido");
-  }
+  if (campo) { campo.classList.add("invalido"); }
 }
 
 function quitarError(id) {
   const error = document.getElementById("error-" + id);
-  if (error) {
-    error.textContent = "";
-  }
+  if (error) { error.textContent = ""; }
   const campo = document.getElementById(id);
-  if (campo) {
-    campo.classList.remove("invalido");
-  }
-}
-
-function validarNombre() {
-  const nombre = document.getElementById("nombre");
-  if (nombre.value.trim().length < 5) {
-    ponerError("nombre", "El nombre debe tener al menos 5 letras.");
-    return false;
-  }
-  return true;
-}
-
-function validarCorreo() {
-  const correo = document.getElementById("correo");
-  if (!correo.value.includes("@") || !correo.value.includes(".")) {
-    ponerError("correo", "Escribe un correo válido, por ejemplo nombre@correo.com.");
-    return false;
-  }
-  return true;
-}
-
-function validarCorreo2() {
-  const correo = document.getElementById("correo");
-  const correo2 = document.getElementById("correo2");
-  if (correo2.value !== correo.value || correo2.value === "") {
-    ponerError("correo2", "Los dos correos deben ser iguales.");
-    return false;
-  }
-  return true;
-}
-
-function validarTelefono() {
-  const telefono = document.getElementById("telefono");
-  const numero = telefono.value.split("-").join("");
-  const prefijo = numero.slice(0, 3);
-  if (numero.length !== 10) {
-    ponerError("telefono", "El teléfono debe tener 10 dígitos.");
-    return false;
-  }
-  if (isNaN(numero)) {
-    ponerError("telefono", "El teléfono solo puede tener números.");
-    return false;
-  }
-  if (prefijo !== "809" && prefijo !== "829" && prefijo !== "849") {
-    ponerError("telefono", "El teléfono debe empezar con 809, 829 o 849.");
-    return false;
-  }
-  return true;
-}
-
-function validarPin() {
-  const pin = document.getElementById("pin");
-  if (pin.value.length !== 4 || isNaN(pin.value)) {
-    ponerError("pin", "El PIN debe tener exactamente 4 números.");
-    return false;
-  }
-  return true;
-}
-
-function validarServicio() {
-  const servicioElegido = document.getElementById("servicio");
-  if (servicioElegido.value === "") {
-    ponerError("servicio", "Escoge un tipo de servicio.");
-    return false;
-  }
-  return true;
-}
-
-function validarHabitaciones() {
-  const habitaciones = document.getElementById("habitaciones");
-  const cantidad = Number(habitaciones.value);
-  if (habitaciones.value === "" || cantidad < 1 || cantidad > 5) {
-    ponerError("habitaciones", "Escribe un número de habitaciones entre 1 y 5.");
-    return false;
-  }
-  return true;
-}
-
-function validarFecha() {
-  const fecha = document.getElementById("fecha");
-  const hoy = new Date();
-  hoy.setHours(0, 0, 0, 0);
-  const elegida = new Date(fecha.value + "T00:00:00");
-  if (fecha.value === "") {
-    ponerError("fecha", "Escoge la fecha del servicio.");
-    return false;
-  }
-  if (elegida < hoy) {
-    ponerError("fecha", "La fecha no puede estar en el pasado.");
-    return false;
-  }
-  return true;
-}
-
-function validarHorario() {
-  const horario = document.querySelector('input[name="horario"]:checked');
-  if (horario === null) {
-    ponerError("horario", "Escoge un horario: mañana o tarde.");
-    return false;
-  }
-  return true;
-}
-
-function validarTerminos() {
-  const terminos = document.getElementById("terminos");
-  if (!terminos.checked) {
-    ponerError("terminos", "Debes aceptar las condiciones del servicio.");
-    return false;
-  }
-  return true;
+  if (campo) { campo.classList.remove("invalido"); }
 }
 
 function validarFormulario(evento) {
   evento.preventDefault();
   resultado.textContent = "";
-
   let todoBien = true;
-  if (!validarNombre()) { todoBien = false; }
-  if (!validarCorreo()) { todoBien = false; }
-  if (!validarCorreo2()) { todoBien = false; }
-  if (!validarTelefono()) { todoBien = false; }
-  if (!validarPin()) { todoBien = false; }
-  if (!validarServicio()) { todoBien = false; }
-  if (!validarHabitaciones()) { todoBien = false; }
-  if (!validarFecha()) { todoBien = false; }
-  if (!validarHorario()) { todoBien = false; }
-  if (!validarTerminos()) { todoBien = false; }
+
+  const nombre = document.getElementById("nombre");
+  if (nombre.value.trim().length < 5) {
+    ponerError("nombre", "El nombre debe tener al menos 5 letras.");
+    todoBien = false;
+  }
+
+  const correo = document.getElementById("correo");
+  if (!correo.value.includes("@") || !correo.value.includes(".")) {
+    ponerError("correo", "Escribe un correo válido, por ejemplo nombre@correo.com.");
+    todoBien = false;
+  }
+
+  const correo2 = document.getElementById("correo2");
+  if (correo2.value !== correo.value || correo2.value === "") {
+    ponerError("correo2", "Los dos correos deben ser iguales.");
+    todoBien = false;
+  }
+
+  const telefono = document.getElementById("telefono");
+  const numero = telefono.value.split("-").join("");
+  const prefijo = numero.slice(0, 3);
+  if (numero.length !== 10 || isNaN(numero) || (prefijo !== "809" && prefijo !== "829" && prefijo !== "849")) {
+    ponerError("telefono", "Debe ser un celular válido (ej. 809-555-0187).");
+    todoBien = false;
+  }
+
+  const pin = document.getElementById("pin");
+  if (pin.value.length !== 4 || isNaN(pin.value)) {
+    ponerError("pin", "El PIN debe tener exactamente 4 números.");
+    todoBien = false;
+  }
+
+  const servicio = document.getElementById("servicio");
+  if (servicio.value === "") {
+    ponerError("servicio", "Escoge un tipo de servicio.");
+    todoBien = false;
+  }
+
+  const habitaciones = document.getElementById("habitaciones");
+  if (habitaciones.value === "" || Number(habitaciones.value) < 1 || Number(habitaciones.value) > 5) {
+    ponerError("habitaciones", "Escribe un número de habitaciones entre 1 y 5.");
+    todoBien = false;
+  }
+
+  const fecha = document.getElementById("fecha");
+  const hoy = new Date();
+  hoy.setHours(0, 0, 0, 0);
+  const elegida = new Date(fecha.value + "T00:00:00");
+  if (fecha.value === "" || elegida < hoy) {
+    ponerError("fecha", "La fecha no puede estar en el pasado.");
+    todoBien = false;
+  }
+
+  const horario = document.querySelector('input[name="horario"]:checked');
+  if (horario === null) {
+    ponerError("horario", "Escoge un horario: mañana o tarde.");
+    todoBien = false;
+  }
+
+  const terminos = document.getElementById("terminos");
+  if (!terminos.checked) {
+    ponerError("terminos", "Debes aceptar las condiciones del servicio.");
+    todoBien = false;
+  }
 
   if (todoBien) {
-    mostrarResumen();
+    const textoServicio = servicio.options[servicio.selectedIndex].text;
+    resultado.textContent = "¡Gracias, " + nombre.value + "! Recibimos tu reserva: " + textoServicio +
+      ", " + habitaciones.value + " habitación(es), el " + fecha.value + " en la " + horario.value + ".";
     formulario.reset();
   }
-}
-
-function mostrarResumen() {
-  const nombre = document.getElementById("nombre").value;
-  const servicioElegido = document.getElementById("servicio");
-  const textoServicio = servicioElegido.options[servicioElegido.selectedIndex].text;
-  const habitaciones = document.getElementById("habitaciones").value;
-  const fecha = document.getElementById("fecha").value;
-  const horario = document.querySelector('input[name="horario"]:checked').value;
-
-  resultado.textContent = "¡Gracias, " + nombre + "! Recibimos tu reserva: " + textoServicio +
-    ", " + habitaciones + " habitación(es), el " + fecha + " en la " + horario + ".";
 }
 
 function alCorregir(evento) {
@@ -338,27 +251,20 @@ if (formulario && resultado) {
   formulario.addEventListener("change", alCorregir);
 }
 
-
+// 7. Estadísticas animadas (Página Inicio)
 const numeros = document.querySelectorAll(".numero");
 
 function contarNumero(elemento) {
   const meta = Number(elemento.getAttribute("data-meta"));
   let actual = 0;
   elemento.textContent = 0;
-
   const reloj = setInterval(function () {
     actual = actual + 1;
     elemento.textContent = actual;
-    if (actual >= meta) {
-      clearInterval(reloj);
-    }
+    if (actual >= meta) { clearInterval(reloj); }
   }, 120);
 }
 
-function animarNumeros() {
-  numeros.forEach(contarNumero);
-}
-
 if (numeros.length > 0) {
-  animarNumeros();
+  numeros.forEach(contarNumero);
 }

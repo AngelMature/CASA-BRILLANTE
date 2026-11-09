@@ -10,7 +10,6 @@
 </head>
 <body>
 
-
   <header>
     <h1>🌿 Casa Brillante</h1>
     <button id="btnMenu" type="button" aria-expanded="false" aria-controls="menu">☰ Menú</button>
@@ -26,11 +25,11 @@
 
   <main>
 
-
     <section>
       <h2>Catálogo de servicios</h2>
       <label for="buscador">Buscar servicio</label>
       <input type="search" id="buscador" name="buscador" placeholder="Ej. ventanas">
+      
       <label for="filtro">Categoría</label>
       <select id="filtro" name="filtro">
         <option value="todas">Todas</option>
@@ -38,10 +37,10 @@
         <option value="Profunda">Profunda</option>
         <option value="Extras">Extras</option>
       </select>
+      
       <p id="contador"></p>
       <div id="catalogo"></div>
     </section>
-
 
     <section>
       <h2>Qué incluye la limpieza regular</h2>
@@ -85,7 +84,6 @@
       </dl>
     </section>
 
-
     <section>
       <h2>Tabla de tarifas</h2>
       <table>
@@ -125,30 +123,31 @@
       </table>
     </section>
 
-
     <section>
       <h2>Mira, escucha y ubícanos</h2>
       <figure>
+        <!-- Ruta de tu imagen real corregida -->
         <img src="img/cocina-limpia.jpg" alt="Cocina de apartamento limpia, con la estufa y el mesón brillantes" width="600" height="300">
         <figcaption>Así queda una cocina después de la limpieza profunda.</figcaption>
       </figure>
+      
       <h3>Sonido de confirmación</h3>
       <audio controls>
-        <source src="audio/servicio-confirmado.mp3" type="audio/wav">
+        <!-- Ruta de tu audio mp3 corregida y con type audio/mpeg -->
+        <source src="audio/servicio-confirmado.mp3" type="audio/mpeg">
         Tu navegador no puede reproducir audio.
       </audio>
+      
       <h3>Nuestra oficina</h3>
       <iframe title="Mapa de OpenStreetMap con la zona de Bávaro, en Punta Cana, donde está nuestra oficina" src="https://www.openstreetmap.org/export/embed.html?bbox=-68.47%2C18.70%2C-68.43%2C18.73&amp;layer=mapnik" width="600" height="350"></iframe>
     </section>
- 
-    
+  
     <aside>
       <h2>Ojo con esto</h2>
       <p>Si tu apartamento tiene más de 120 m<sup>2</sup> o más de 3 habitaciones, escríbenos para darte un precio a la medida.</p>
     </aside>
 
   </main>
-
 
   <footer>
     <p>© <span id="anio">2026</span> Casa Brillante. Angel David Mature Caraballo · Matrícula 2024-2048</p>
