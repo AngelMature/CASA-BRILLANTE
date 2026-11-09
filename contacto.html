@@ -10,6 +10,7 @@
 <body>
 
   <header>
+    <p class="marca">🌿 Casa Brillante</p>
     <h1>Contacto y reservas</h1>
     <nav>
       <ul>
@@ -36,7 +37,7 @@
       </p>
       <ul>
         <li><a href="#formulario">Ir directo al formulario de reserva</a></li>
-        <li><a href="docs/condiciones-del-servicio.txt" download>Descargar las condiciones del servicio (TXT)</a></li>
+        <li><a href="docs/condiciones-del-servicio.txt">Ver las condiciones del servicio (TXT)</a></li>
         <li>
           Si tu complejo o residencial tiene reglas para visitas, revisa también el
           <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener">mapa de OpenStreetMap</a>
@@ -44,7 +45,7 @@
         </li>
       </ul>
     </section>
-    
+
     <section id="formulario">
       <h2>Reserva tu limpieza</h2>
       <form action="#" method="post">
@@ -64,16 +65,44 @@
           </p>
           <p>
             <label for="pin">PIN de 4 números para consultar tu reserva</label><br>
-            <input type="password" id="pin" name="pin" required minlength="4" maxlength="4" pattern="[0-9]{4}" autocomplete="off">
+            <input type="password" id="pin" name="pin" required minlength="4" maxlength="4" pattern="[0-9]{4}">
           </p>
           <p>
-            <label for="foto">Foto del área a limpiar (opcional)</label><br>
-            <input type="file" id="foto" name="foto" accept="image/*">
+            Si quieres mostrarnos el área a limpiar, mándanos la foto por correo
+            a hola@casabrillante.com.
           </p>
         </fieldset>
-        
+
         <fieldset>
           <legend>Tu servicio</legend>
           <p>
             <label for="servicio">Tipo de servicio</label><br>
-            <select id="servicio"
+            <select id="servicio" name="servicio" required>
+              <option value="">Escoge uno</option>
+              <option value="regular">Limpieza regular</option>
+              <option value="profunda">Limpieza profunda</option>
+              <option value="ventanas">Ventanas y balcón</option>
+              <option value="colchon">Lavado de colchón</option>
+            </select>
+          </p>
+          <p>
+            <label for="fecha">Fecha del servicio</label><br>
+            <input type="date" id="fecha" name="fecha" required>
+          </p>
+          <p>
+            <label for="notas">Notas (opcional)</label><br>
+            <textarea id="notas" name="notas" rows="4"></textarea>
+          </p>
+        </fieldset>
+
+        <button type="submit">Reservar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p><small>© 2026 Casa Brillante. Sitio hecho por Angel David Mature Caraballo, matrícula 2024-2048.</small></p>
+  </footer>
+
+</body>
+</html>
