@@ -6,103 +6,117 @@
   <title>Contacto y reservas | Casa Brillante</title>
   <meta name="description" content="Reserva tu limpieza a domicilio con Casa Brillante. Llena el formulario, llámanos o escríbenos por correo.">
   <link rel="stylesheet" href="css/estilos.css">
+  <script src="js/app.js" defer></script>
 </head>
 <body>
 
   <header>
-    <p class="marca">🌿 Casa Brillante</p>
-    <h1>Contacto y reservas</h1>
+    <h1>🌿 Casa Brillante</h1>
+    <button id="btnMenu" type="button" aria-expanded="false" aria-controls="menu">☰ Menú</button>
     <nav>
-      <ul>
+      <ul id="menu">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="servicios.html">Servicios</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="contacto.html" aria-current="page">Contacto</a></li>
       </ul>
     </nav>
+    <button id="btnOscuro" type="button">🌙 Modo oscuro</button>
   </header>
 
   <main>
+
     <section id="datos">
       <h2>Dónde y cuándo encontrarnos</h2>
       <address>
-        <strong>Casa Brillante</strong><br>
-        Boulevard Turístico del Este, Plaza Bávaro<br>
-        Punta Cana, República Dominicana<br>
-        Teléfono: <a href="tel:+18095550187">809-555-0187</a><br>
-        Correo: <a href="mailto:hola@casabrillante.com">hola@casabrillante.com</a>
+        <p>Boulevard Turístico del Este, Plaza Bávaro, Punta Cana, República Dominicana</p>
+        <p>Teléfono: <a href="tel:+18095550187">809-555-0187</a></p>
+        <p>Correo: <a href="mailto:hola@casabrillante.com">hola@casabrillante.com</a></p>
       </address>
-      <p>
-        Horario de atención: lunes a sábado, de <time datetime="07:00">7:00 a. m.</time>
-        a <time datetime="17:00">5:00 p. m.</time>
-      </p>
+      <p>Horario: lunes a sábado, de <time datetime="07:00">7:00 a. m.</time> a <time datetime="17:00">5:00 p. m.</time></p>
       <ul>
-        <li><a href="#formulario">Ir directo al formulario de reserva</a></li>
-        <li><a href="docs/condiciones-del-servicio.txt">Ver las condiciones del servicio (TXT)</a></li>
-        <li>
-          Si tu complejo o residencial tiene reglas para visitas, revisa también el
-          <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener">mapa de OpenStreetMap</a>
-          para ubicar bien la dirección.
-        </li>
+        <li><a href="#formulario">Ir al formulario de reserva</a></li>
+        <li><a href="docs/condiciones-del-servicio.txt" download>Descargar las condiciones del servicio (TXT)</a></li>
+        <li><a href="https://www.openstreetmap.org/" target="_blank" rel="noopener">Ver el mapa de OpenStreetMap</a></li>
       </ul>
     </section>
 
     <section id="formulario">
       <h2>Reserva tu limpieza</h2>
-      <form action="#" method="post">
+      <form id="formReserva" action="#" method="post" novalidate>
+
         <fieldset>
           <legend>Tus datos</legend>
-          <p>
-            <label for="nombre">Nombre completo</label><br>
-            <input type="text" id="nombre" name="nombre" required minlength="5" maxlength="60">
-          </p>
-          <p>
-            <label for="correo">Correo electrónico</label><br>
-            <input type="email" id="correo" name="correo" required>
-          </p>
-          <p>
-            <label for="telefono">Teléfono (formato 809-000-0000)</label><br>
-            <input type="tel" id="telefono" name="telefono" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="809-555-0187">
-          </p>
-          <p>
-            <label for="pin">PIN de 4 números para consultar tu reserva</label><br>
-            <input type="password" id="pin" name="pin" required minlength="4" maxlength="4" pattern="[0-9]{4}">
-          </p>
-          <p>
-            Si quieres mostrarnos el área a limpiar, mándanos la foto por correo
-            a hola@casabrillante.com.
-          </p>
+
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" name="nombre" required minlength="5" maxlength="60" aria-describedby="error-nombre">
+          <span class="error" id="error-nombre"></span>
+
+          <label for="correo">Correo electrónico</label>
+          <input type="email" id="correo" name="correo" required aria-describedby="error-correo">
+          <span class="error" id="error-correo"></span>
+
+          <label for="correo2">Confirma tu correo</label>
+          <input type="email" id="correo2" name="correo2" required aria-describedby="error-correo2">
+          <span class="error" id="error-correo2"></span>
+
+          <label for="telefono">Teléfono (809-555-0187)</label>
+          <input type="tel" id="telefono" name="telefono" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="809-555-0187" aria-describedby="error-telefono">
+          <span class="error" id="error-telefono"></span>
+
+          <label for="pin">PIN de 4 números para consultar tu reserva</label>
+          <input type="password" id="pin" name="pin" required minlength="4" maxlength="4" pattern="[0-9]{4}" aria-describedby="error-pin">
+          <span class="error" id="error-pin"></span>
         </fieldset>
 
         <fieldset>
           <legend>Tu servicio</legend>
-          <p>
-            <label for="servicio">Tipo de servicio</label><br>
-            <select id="servicio" name="servicio" required>
-              <option value="">Escoge uno</option>
+
+          <label for="servicio">Tipo de servicio</label>
+          <select id="servicio" name="servicio" required aria-describedby="error-servicio">
+            <option value="">Escoge uno</option>
+            <optgroup label="Limpieza del hogar">
               <option value="regular">Limpieza regular</option>
               <option value="profunda">Limpieza profunda</option>
+            </optgroup>
+            <optgroup label="Extras">
               <option value="ventanas">Ventanas y balcón</option>
               <option value="colchon">Lavado de colchón</option>
-            </select>
-          </p>
-          <p>
-            <label for="fecha">Fecha del servicio</label><br>
-            <input type="date" id="fecha" name="fecha" required>
-          </p>
-          <p>
-            <label for="notas">Notas (opcional)</label><br>
-            <textarea id="notas" name="notas" rows="4"></textarea>
-          </p>
+            </optgroup>
+          </select>
+          <span class="error" id="error-servicio"></span>
+
+          <label for="habitaciones">Número de habitaciones</label>
+          <input type="number" id="habitaciones" name="habitaciones" required min="1" max="5" aria-describedby="error-habitaciones">
+          <span class="error" id="error-habitaciones"></span>
+
+          <label for="fecha">Fecha del servicio</label>
+          <input type="date" id="fecha" name="fecha" required aria-describedby="error-fecha">
+          <span class="error" id="error-fecha"></span>
+
+          <p>Horario preferido</p>
+          <label><input type="radio" name="horario" value="manana" required aria-describedby="error-horario"> Mañana</label>
+          <label><input type="radio" name="horario" value="tarde"> Tarde</label>
+          <span class="error" id="error-horario"></span>
+
+          <label for="ubicacion">Enlace de tu ubicación en el mapa (opcional)</label>
+          <input type="url" id="ubicacion" name="ubicacion" placeholder="https://maps.google.com/...">
+
+          <label for="mensaje">Mensaje (opcional)</label>
+          <textarea id="mensaje" name="mensaje" rows="4" maxlength="300"></textarea>
+
+          <label for="terminos"><input type="checkbox" id="terminos" name="terminos" required aria-describedby="error-terminos"> Acepto las condiciones del servicio</label>
+          <span class="error" id="error-terminos"></span>
         </fieldset>
 
-        <button type="submit">Reservar</button>
+        <button type="submit">Enviar reserva</button>
+        <p id="resultado" role="status"></p>
       </form>
     </section>
+
   </main>
 
   <footer>
-    <p><small>© 2026 Casa Brillante. Sitio hecho por Angel David Mature Caraballo, matrícula 2024-2048.</small></p>
+    <p>© <span id="anio">2026</span> Casa Brillante. Angel David Mature Caraballo · Matrícula 2024-2048</p>
   </footer>
-
 </body>
 </html>

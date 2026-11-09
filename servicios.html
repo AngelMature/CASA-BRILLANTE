@@ -4,194 +4,136 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Servicios y tarifas | Casa Brillante</title>
-  <meta name="description" content="Conoce los servicios de limpieza de Casa Brillante: regular, profunda y extras. Revisa qué incluye, cómo reservar y la tabla de tarifas.">
+  <meta name="description" content="Catálogo de servicios de Casa Brillante: limpieza regular, profunda y extras. Busca, filtra y revisa la tabla de tarifas.">
   <link rel="stylesheet" href="css/estilos.css">
+  <script src="js/app.js" defer></script>
 </head>
 <body>
 
   <header>
-    <p class="marca">🌿 Casa Brillante</p>
-    <h1>Nuestros servicios y tarifas</h1>
+    <h1>🌿 Casa Brillante</h1>
+    <button id="btnMenu" type="button" aria-expanded="false" aria-controls="menu">☰ Menú</button>
     <nav>
-      <ul>
+      <ul id="menu">
         <li><a href="index.html">Inicio</a></li>
-        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="servicios.html" aria-current="page">Servicios</a></li>
         <li><a href="contacto.html">Contacto</a></li>
       </ul>
     </nav>
+    <button id="btnOscuro" type="button">🌙 Modo oscuro</button>
   </header>
 
   <main>
 
-    <section id="destacados">
-      <h2>Servicios destacados</h2>
-      <p>Estos son los tres que más nos piden. Si quieres ver todos los precios, mira la <a href="#tarifas">tabla de tarifas</a>.</p>
-
-      <div class="tarjetas">
-
-        <article>
-          <h3>Limpieza regular</h3>
-          <p>Polvo, pisos, baños y cocina, para mantener tu apartamento al día.</p>
-          <p>Desde <span class="precio">RD$ 1,800</span></p>
-        </article>
-
-        <article>
-          <h3>Limpieza profunda</h3>
-          <p>Llegamos a los rincones: azulejos, juntas y gabinetes por dentro.</p>
-          <p>Desde <span class="precio">RD$ 3,800</span></p>
-        </article>
-
-        <article>
-          <h3>Ventanas y balcón</h3>
-          <p>Cristales sin marcas ni manchas, incluyendo la parte de afuera del balcón.</p>
-          <p><span class="precio">RD$ 900</span></p>
-        </article>
-
-      </div>
+    <section>
+      <h2>Catálogo de servicios</h2>
+      <label for="buscador">Buscar servicio</label>
+      <input type="search" id="buscador" name="buscador" placeholder="Ej. ventanas">
+      <label for="filtro">Categoría</label>
+      <select id="filtro" name="filtro">
+        <option value="todas">Todas</option>
+        <option value="Regular">Regular</option>
+        <option value="Profunda">Profunda</option>
+        <option value="Extras">Extras</option>
+      </select>
+      <p id="contador"></p>
+      <div id="catalogo"></div>
     </section>
 
-    <section id="incluye">
+    <section>
       <h2>Qué incluye la limpieza regular</h2>
       <ul>
         <li>Cocina
           <ul>
             <li>Estufa, fregadero y superficies</li>
-            <li>Gabinetes por fuera</li>
             <li>Piso trapeado</li>
           </ul>
         </li>
         <li>Baños
           <ul>
             <li>Inodoro, lavamanos y ducha</li>
-            <li>Espejos</li>
-            <li>Piso desinfectado</li>
-          </ul>
-        </li>
-        <li>Habitaciones y sala
-          <ul>
-            <li>Polvo en muebles y repisas</li>
-            <li>Aspirado o trapeado</li>
-            <li>Cama tendida</li>
+            <li>Espejos y piso desinfectado</li>
           </ul>
         </li>
       </ul>
-    </section>
 
-    <section id="reservar">
-      <h2>Cómo funciona</h2>
-      <h3>Antes del servicio</h3>
-      <ol>
-        <li>Escoges el servicio y la fecha en el <a href="contacto.html#formulario">formulario de reserva</a>.</li>
-        <li>Te confirmamos por WhatsApp o correo y te damos tu código de cliente.</li>
-        <li>Un día antes te escribimos para confirmar la hora.</li>
-      </ol>
-
-      <h3>El día del servicio</h3>
-      <ol start="4">
-        <li>Llega el personal con los productos y los equipos.</li>
-        <li>Al terminar, revisas el trabajo junto a ellos.</li>
-        <li>Pagas en efectivo, con tarjeta o por transferencia.</li>
-      </ol>
-    </section>
-
-    <section id="top">
-      <h2>Los más pedidos</h2>
-      <p>Nuestro ranking del último trimestre, del tercero al primero:</p>
+      <h3>Los más pedidos del trimestre</h3>
       <ol reversed>
         <li>Ventanas y balcón</li>
         <li>Limpieza profunda</li>
         <li>Limpieza regular</li>
       </ol>
+
+      <h3>Cómo reservar (desde el paso 4 es el día del servicio)</h3>
+      <ol start="4">
+        <li>Llega el personal con los productos.</li>
+        <li>Revisas el trabajo junto a ellos.</li>
+        <li>Pagas en efectivo, tarjeta o transferencia.</li>
+      </ol>
+
+      <h3>Glosario</h3>
+      <dl>
+        <dt>Limpieza regular</dt>
+        <dd>Mantenimiento: polvo, pisos, baños y cocina.</dd>
+        <dt>Limpieza profunda</dt>
+        <dd>Rincones, juntas y gabinetes por dentro.</dd>
+        <dt>Desinfección</dt>
+        <dd>Productos que eliminan gérmenes en manijas e interruptores.</dd>
+      </dl>
     </section>
 
-    <section id="tarifas">
+    <section>
       <h2>Tabla de tarifas</h2>
       <table>
-        <caption>Tarifas por tipo de servicio (precios en RD$, ITBIS incluido)</caption>
+        <caption>Tarifas por servicio (RD$, ITBIS incluido)</caption>
         <thead>
           <tr>
             <th scope="col">Categoría</th>
             <th scope="col">Servicio</th>
             <th scope="col">Precio (RD$)</th>
-            <th scope="col">Duración aproximada</th>
+            <th scope="col">Duración</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th scope="row" rowspan="3">Limpieza del hogar</th>
-            <td>Regular, 1 habitación</td>
-            <td>1,800</td>
-            <td>2 horas</td>
+            <th scope="row" rowspan="3">Regular</th>
+            <td>Regular, 1 habitación</td><td>1,800</td><td>2 horas</td>
           </tr>
+          <tr><td>Regular, 2 habitaciones</td><td>2,500</td><td>3 horas</td></tr>
+          <tr><td>Regular, 3 habitaciones</td><td>3,300</td><td>4 horas</td></tr>
           <tr>
-            <td>Regular, 2 habitaciones</td>
-            <td>2,500</td>
-            <td>3 horas</td>
+            <th scope="row" rowspan="2">Profunda</th>
+            <td>Profunda, 1 o 2 habitaciones</td><td>3,800</td><td>5 horas</td>
           </tr>
-          <tr>
-            <td>Regular, 3 habitaciones</td>
-            <td>3,300</td>
-            <td>4 horas</td>
-          </tr>
-          <tr>
-            <th scope="row" rowspan="2">Limpieza profunda</th>
-            <td>Profunda, 1 o 2 habitaciones</td>
-            <td>3,800</td>
-            <td>5 horas</td>
-          </tr>
-          <tr>
-            <td>Profunda, 3 habitaciones</td>
-            <td>5,200</td>
-            <td>6 horas</td>
-          </tr>
+          <tr><td>Profunda, 3 habitaciones</td><td>5,200</td><td>6 horas</td></tr>
           <tr>
             <th scope="row" rowspan="2">Extras</th>
-            <td>Ventanas y balcón</td>
-            <td>900</td>
-            <td>1 hora</td>
+            <td>Ventanas y balcón</td><td>900</td><td>1 hora</td>
           </tr>
-          <tr>
-            <td>Lavado de colchón</td>
-            <td>1,200</td>
-            <td>1 hora</td>
-          </tr>
+          <tr><td>Lavado de colchón</td><td>1,200</td><td>1 hora</td></tr>
         </tbody>
         <tfoot>
           <tr>
             <th scope="row" colspan="2">Traslado del personal</th>
-            <td colspan="2">Gratis dentro de Bávaro y Punta Cana</td>
+            <td colspan="2">Gratis en Bávaro, Punta Cana y el Gran Santo Domingo</td>
           </tr>
         </tfoot>
       </table>
     </section>
 
-    <section id="glosario">
-      <h2>Glosario de limpieza</h2>
-      <dl>
-        <dt>Limpieza regular</dt>
-        <dd>Mantenimiento de todos los días: polvo, pisos, baños y cocina.</dd>
-        <dt>Limpieza profunda</dt>
-        <dd>Limpieza detallada de rincones, juntas, gabinetes por dentro y zonas que casi nunca se tocan.</dd>
-        <dt>Limpieza post-mudanza</dt>
-        <dd>Limpieza completa de un apartamento vacío, antes de entrar o después de salir.</dd>
-        <dt>Desinfección</dt>
-        <dd>Aplicar productos que eliminan gérmenes en superficies de mucho contacto, como manijas e interruptores.</dd>
-      </dl>
-    </section>
-
-    <section id="ubicacion">
-      <h2>Avisos y ubicación</h2>
-
-      <h3>Tu confirmación de servicio</h3>
-      <div class="aviso-sonido">
-        <p>🔔 Cuando confirmamos tu servicio te llega una notificación con sonido a tu celular.</p>
-      </div>
-
+    <section>
+      <h2>Mira, escucha y ubícanos</h2>
+      <figure>
+        <img src="https://placehold.co/600x300?text=Cocina+limpia" alt="Cocina de apartamento limpia, con la estufa y el mesón brillantes" width="600" height="300">
+        <figcaption>Así queda una cocina después de la limpieza profunda.</figcaption>
+      </figure>
+      <h3>Sonido de confirmación</h3>
+      <audio controls>
+        <source src="audio/servicio-confirmado.wav" type="audio/wav">
+        Tu navegador no puede reproducir audio.
+      </audio>
       <h3>Nuestra oficina</h3>
-      <div class="mapa">
-        <p>Estamos en la zona de Bávaro, en Punta Cana (Boulevard Turístico del Este, Plaza Bávaro).</p>
-        <p><a href="https://www.openstreetmap.org/" target="_blank" rel="noopener">Ver el mapa en OpenStreetMap</a></p>
-      </div>
+      <iframe title="Mapa de OpenStreetMap con la zona de Bávaro, en Punta Cana, donde está nuestra oficina" src="https://www.openstreetmap.org/export/embed.html?bbox=-68.47%2C18.70%2C-68.43%2C18.73&amp;layer=mapnik" width="600" height="350" loading="lazy"></iframe>
     </section>
 
     <aside>
@@ -202,8 +144,7 @@
   </main>
 
   <footer>
-    <p><small>© 2026 Casa Brillante. Sitio hecho por Angel David Mature Caraballo, matrícula 2024-2048.</small></p>
+    <p>© <span id="anio">2026</span> Casa Brillante. Angel David Mature Caraballo · Matrícula 2024-2048</p>
   </footer>
-
 </body>
 </html>
