@@ -105,7 +105,7 @@ function pintarTarjetas(lista) {
   catalogo.textContent = "";
   contador.textContent = "Mostrando " + lista.length + " de " + servicios.length + " servicios";
 
-    if (lista.length === 0) {
+  if (lista.length === 0) {
     const mensaje = document.createElement("p");
     mensaje.textContent = "No encontramos servicios con esa búsqueda. ¡Prueba con otra palabra!";
     catalogo.appendChild(mensaje);
@@ -123,6 +123,7 @@ function pintarTarjetas(lista) {
     titulo.textContent = servicio.nombre;
 
     const categoria = document.createElement("p");
+    categoria.className = "categoria";
     categoria.textContent = "Categoría: " + servicio.categoria;
 
     const descripcion = document.createElement("p");
@@ -325,7 +326,7 @@ function mostrarResumen() {
 
 function alCorregir(evento) {
   let id = evento.target.id;
-  if (id === "") {
+  if (evento.target.type === "radio") {
     id = evento.target.name;
   }
   quitarError(id);
@@ -335,4 +336,29 @@ if (formulario && resultado) {
   formulario.addEventListener("submit", validarFormulario);
   formulario.addEventListener("input", alCorregir);
   formulario.addEventListener("change", alCorregir);
+}
+
+
+const numeros = document.querySelectorAll(".numero");
+
+function contarNumero(elemento) {
+  const meta = Number(elemento.getAttribute("data-meta"));
+  let actual = 0;
+  elemento.textContent = 0;
+
+  const reloj = setInterval(function () {
+    actual = actual + 1;
+    elemento.textContent = actual;
+    if (actual >= meta) {
+      clearInterval(reloj);
+    }
+  }, 120);
+}
+
+function animarNumeros() {
+  numeros.forEach(contarNumero);
+}
+
+if (numeros.length > 0) {
+  animarNumeros();
 }

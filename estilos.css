@@ -1,13 +1,13 @@
 :root {
-  --color-fondo: #e6f2ea;
+  --color-fondo: #e3f6ee;
   --color-texto: #2b2b2b;
-  --color-principal: #2e7d5b;
-  --color-encabezado: #1f5c42;
+  --color-principal: #12805f;
+  --color-encabezado: #0b4f3c;
   --color-sobre-encabezado: #ffffff;
   --color-tarjeta: #ffffff;
   --color-borde: #cfe5d8;
   --color-error: #c0392b;
-  --color-acento: #f4b942;
+  --color-acento: #ffb703;
   --color-sobre-acento: #2b2b2b;
   --color-suave: #fff4d6;
   --fuente: "Poppins", Arial, sans-serif;
@@ -186,7 +186,32 @@ aside {
 }
 
 .precio {
+  font-size: 1.2rem;
   font-weight: bold;
+  color: var(--color-principal);
+}
+
+.tarjeta {
+  overflow: hidden;
+}
+
+.tarjeta img {
+  display: block;
+  width: 100%;
+  border-radius: var(--radio);
+  transition: transform 0.4s;
+}
+
+.tarjeta:hover img {
+  transform: scale(1.08);
+}
+
+.categoria {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--color-suave);
+  font-size: 0.85rem;
 }
 
 table {
@@ -307,7 +332,9 @@ main > section.hero {
   grid-column: 1 / -1;
   padding: 48px 20px;
   border-top: none;
-  background: linear-gradient(135deg, var(--color-principal), var(--color-encabezado));
+  background: linear-gradient(135deg, var(--color-encabezado), var(--color-principal), var(--color-encabezado));
+  background-size: 200% 200%;
+  animation: aparecer 0.6s ease-out backwards, brillo 10s ease-in-out infinite alternate;
   color: var(--color-sobre-encabezado);
   text-align: center;
 }
@@ -386,6 +413,77 @@ mark {
   color: var(--color-sobre-acento);
 }
 
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes brillo {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
+
+main > * {
+  animation: aparecer 0.6s ease-out backwards;
+}
+
+main > *:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+main > *:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  margin-top: 6px;
+  border-radius: var(--radio);
+  background: var(--color-acento);
+}
+
+.hero h2::after {
+  margin: 8px auto 0;
+}
+
+.beneficios li {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.beneficios li:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sombra);
+}
+
+.estadisticas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.numero {
+  display: block;
+  font-size: 2.2rem;
+  color: var(--color-acento);
+}
+
 footer {
   padding: var(--espacio);
   background: var(--color-encabezado);
@@ -444,5 +542,12 @@ footer p {
   td {
     padding: 4px;
     font-size: 0.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
   }
 }
